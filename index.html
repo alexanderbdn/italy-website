@@ -608,7 +608,7 @@ dialog button{position:fixed;background:none;border:0;color:#fff;font:300 2.2rem
       else if(ch=='"')q=true;else if(ch==','){row.push(c);c=''}else if(ch=='\n'){row.push(c);rows.push(row);row=[];c=''}else if(ch!='\r')c+=ch}
     if(c||row.length){row.push(c);rows.push(row)}return rows.map(function(r){return r.map(function(x){return (x||'').trim()})})}
   function tab(n){if(!SHEET_ID)return Promise.reject();return fetch('https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:csv&headers=1&sheet='+encodeURIComponent(n)).then(function(r){if(!r.ok)throw 0;return r.text()}).then(csv)}
-  function set(id,v){var e=document.getElementById(id);if(e&&v)e.textContent=v}
+  function put(id,v){var e=document.getElementById(id);if(e&&v)e.textContent=v}
   var numbers=tab('Numbers').then(function(rows){var m={};rows.slice(1).forEach(function(r){if(r[0])m[r[0].toLowerCase()]=r[1]||''});return m}).catch(function(){return {}});
 
   (function(){var g=document.getElementById('d-g'),go=document.getElementById('d-go'),mail=document.getElementById('d-mail'),msg=document.getElementById('d-msg'),
@@ -685,9 +685,9 @@ dialog button{position:fixed;background:none;border:0;color:#fff;font:300 2.2rem
     var box=document.getElementById('rv-list');box.textContent='';
     list.forEach(function(r){var f=document.createElement('figure'),b=document.createElement('blockquote'),c=document.createElement('figcaption');
       b.textContent='“'+r[3].replace(/^["“]+|["”]+$/g,'')+'”';c.textContent=[r[0],r[1],r[2]].filter(Boolean).join(' · ');f.appendChild(b);f.appendChild(c);box.appendChild(f)});
-    set('rv-count',String(list.length));
-    return numbers.then(function(m){set('rv-rating',m['airbnb rating']);set('st-rating',m['airbnb rating']);set('rv-count',m['number of reviews']);
-      set('st-years',m['years hosting']);set('st-hostreviews',m['host reviews']);set('st-hostrating',m['host rating']);set('st-response',m['response rate'])})
+    put('rv-count',String(list.length));
+    return numbers.then(function(m){put('rv-rating',m['airbnb rating']);put('st-rating',m['airbnb rating']);put('rv-count',m['number of reviews']);
+      put('st-years',m['years hosting']);put('st-hostreviews',m['host reviews']);put('st-hostrating',m['host rating']);put('st-response',m['response rate'])})
   }).catch(function(){});
   var rm=document.getElementById('rm'),rmc=document.getElementById('rmc');
   [].forEach.call(document.querySelectorAll('.room'),function(b){
