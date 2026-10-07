@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Villa Roccolo: a historic 1900 villa with private pool and panoramic views of Lake Maggiore. Sleeps 10 in 6 bedrooms.">
+<title>Villa Roccolo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: a light, airy photo journal. Full-bleed hero, then wide white margins,
+   a day told hour by hour in photo pairs, and tidy galleries. Colour is taken from
+   the house itself: rose stucco, green shutters, lake blue. Single light theme by choice. */
+:root{
+  color-scheme:light;
+  --paper:#fbfcfb;          /* lake-haze white */
+  --mist:#eef3f2;           /* pale water tint for bands */
+  --ink:#1c2b33;            /* deep lake */
+  --soft:#46555c;           /* secondary text */
+  --line:#d9e2e1;
+  --rose:#b9736c;           /* the villa's stucco */
+  --rose-deep:#99564f;
+  --shutter:#6f8f78;        /* the shutters */
+  --display:"Newsreader","Iowan Old Style",Georgia,serif;
+  --body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --gutter:clamp(16px,4.5vw,64px);
+  --gap:clamp(10px,1.4vw,20px);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17.5px/1.7 var(--body);-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance;line-height:1.08}
+h2{font-size:clamp(2.1rem,5vw,3.9rem);letter-spacing:-.01em}
+h2 em,h1 em{font-style:italic;color:var(--rose-deep)}
+p{margin:0}
+.label{font:600 .78rem/1.5 var(--body);letter-spacing:.2em;text-transform:uppercase;color:#4f7059}
+.wrap{max-width:1320px;margin-inline:auto;padding-inline:var(--gutter)}
+section{padding-block:clamp(64px,9vw,130px)}
+.head{display:grid;gap:18px;max-width:64rem;margin-bottom:clamp(32px,5vw,64px)}
+.head p:not(.label){color:var(--soft);font-size:1.12rem;max-width:56rem}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
+.brand{font:italic 400 1.35rem/1 var(--display);text-decoration:none;white-space:nowrap}
+.nav nav{display:flex;gap:clamp(14px,2.4vw,34px);align-items:center}
+.nav nav a{font-size:.82rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--soft)}
+.nav nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--rose);color:#fff!important;text-decoration:none;font:500 .8rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:14px 22px;border-radius:999px;transition:background .2s}
+.btn:hover{background:var(--rose-deep)}
+.btn.big{padding:19px 34px;font-size:.86rem}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+@media(max-width:760px){.nav nav a:not(.btn){display:none}}
+
+/* hero */
+.hero{position:relative;padding:0}
+.hero figure{margin:0;height:min(82vh,56vw);min-height:440px;position:relative;overflow:hidden}
+.hero figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,32,40,0) 40%,rgba(18,32,40,.66))}
+.hero figure img{filter:brightness(1.14) saturate(1.3) contrast(1.03)}
+.hero .over{text-shadow:0 1px 18px rgba(12,24,30,.45);position:absolute;inset:auto 0 0 0;color:#fff;padding-bottom:clamp(28px,5vw,64px)}
+.hero .label{color:#fff;opacity:.9}
+.hero h1{font-size:clamp(3.4rem,11.5vw,10rem);font-style:italic;letter-spacing:-.02em;margin-top:14px;line-height:.95}
+.hero p{font-size:clamp(1rem,1.6vw,1.25rem);max-width:34rem;margin-top:18px;font-weight:400}
+.facts{border-bottom:1px solid var(--line)}
+.facts ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr)}
+.facts li{padding:18px 12px;text-align:center;border-left:1px solid var(--line)}
+.facts li:first-child{border-left:0}
+.facts b{display:block;font:400 clamp(1.6rem,3vw,2.3rem)/1.1 var(--display)}
+.facts span{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+@media(max-width:760px){.facts ul{grid-template-columns:repeat(2,1fr)}.facts li{border-left:0;border-top:1px solid var(--line)}.facts li:nth-child(-n+2){border-top:0}.facts li:last-child{grid-column:1/-1}}
+
+/* figures */
+figure{margin:0}
+.ph{overflow:hidden;background:var(--mist);cursor:zoom-in}
+.ph img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.ph:hover img{transform:scale(1.035)}
+figcaption{font-size:.85rem;color:var(--soft);padding-top:10px;letter-spacing:.02em}
+.r43{aspect-ratio:4/3}.r34{aspect-ratio:3/4}.r11{aspect-ratio:1}.r21{aspect-ratio:2.2/1}
+
+.tint{background:var(--mist)}
+/* intro */
+.intro{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(28px,6vw,96px);align-items:center}
+.intro .text{display:grid;gap:24px;min-width:0}
+.intro .lead{font:400 clamp(1.25rem,2.1vw,1.7rem)/1.45 var(--display)}
+.intro .text p:not(.lead){color:var(--soft)}
+.film{aspect-ratio:1080/1348;overflow:hidden;background:var(--mist);max-width:100%}
+.film video{display:block;width:100%;height:100%;object-fit:cover;cursor:pointer}
+@media(max-width:860px){.intro{grid-template-columns:1fr}}
+
+/* the day */
+.day{background:var(--paper);padding-bottom:clamp(40px,5vw,72px)}
+.day .moment:last-child{padding-bottom:0}
+.moment{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.6fr);gap:clamp(20px,4vw,64px);align-items:start;padding-block:clamp(26px,4vw,52px);border-top:1px solid var(--line)}
+.moment .when{display:grid;gap:10px}
+.moment time{font:italic 500 clamp(2.4rem,5vw,4.2rem)/1 var(--display);color:var(--rose-deep);font-variant-numeric:lining-nums}
+.moment h3{font-size:clamp(1.3rem,2vw,1.7rem)}
+.moment .when p{color:var(--soft);font-size:.98rem}
+.pair{display:grid;gap:var(--gap)}
+.pair.lp{grid-template-columns:16fr 9fr}
+.pair.pl{grid-template-columns:9fr 16fr}
+.pair.ll{grid-template-columns:1fr 1fr}
+.pair.ppp{grid-template-columns:repeat(3,1fr)}
+.stack{display:grid;gap:clamp(18px,2.4vw,32px)}
+.pair figure{min-width:0}
+@media(max-width:560px){.stack .pair{grid-template-columns:1fr}}
+@media(max-width:760px){.moment{grid-template-columns:1fr}.moment .when{position:static}}
+
+/* galleries */
+.mosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap)}
+.mosaic>*{min-width:0}
+.c12{grid-column:span 12}.c8{grid-column:span 8}.c7{grid-column:span 7}.c6{grid-column:span 6}.c5{grid-column:span 5}.c4{grid-column:span 4}.c3{grid-column:span 3}
+.fill{height:100%}
+.fill .ph{height:100%}
+@media(max-width:760px){.c8,.c7,.c6,.c5{grid-column:span 12}.c4,.c3{grid-column:span 6}.c4.solo{grid-column:span 12}.fill .ph{aspect-ratio:4/3;height:auto}}
+
+/* rooms */
+.floors{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,48px);margin-top:clamp(40px,5vw,72px)}
+.floors h3{font-size:1.5rem;font-style:italic;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.floors ul,.know ul{list-style:none;margin:0;padding:0;color:var(--soft);font-size:.98rem}
+.floors li{padding-block:5px}
+@media(max-width:760px){.floors{grid-template-columns:1fr}}
+
+/* panorama band */
+.band{padding:0;position:relative}
+.band figure{height:min(65vh,48vw);min-height:310px}
+.band blockquote{position:absolute;inset:auto 0 0 0;margin:0;color:#fff;padding-block:clamp(24px,4vw,56px);background:linear-gradient(180deg,transparent,rgba(18,32,40,.6))}
+.band blockquote p{font:italic 400 clamp(1.6rem,4vw,3.2rem)/1.15 var(--display);max-width:22ch}
+.band cite{display:block;font:400 .78rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;margin-top:16px;font-style:normal;opacity:.9}
+
+/* good to know */
+.know{background:var(--mist)}
+.glance{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);background:var(--paper)}
+.glance li{padding:clamp(22px,3vw,38px) clamp(16px,2.4vw,32px);border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:8px;align-content:start;min-width:0}
+.glance b{font:italic 500 clamp(2.2rem,4.6vw,3.8rem)/1 var(--display);color:var(--rose-deep);font-variant-numeric:lining-nums}
+.glance span{font-size:1.02rem;color:var(--ink)}
+.kgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,96px);margin-top:clamp(40px,6vw,80px)}
+.kcol{min-width:0}
+.kcol h3{font:italic 500 clamp(1.7rem,2.6vw,2.2rem)/1.1 var(--display);padding-bottom:16px;border-bottom:2px solid var(--rose)}
+.kcol dl{margin:0}
+.kcol dl div{display:grid;grid-template-columns:6.5rem 1fr;gap:16px;padding-block:18px;border-bottom:1px solid var(--line)}
+.kcol dt{font:600 .78rem/1.9 var(--body);letter-spacing:.16em;text-transform:uppercase;color:#4f7059}
+.kcol dd{margin:0;font-size:1.06rem;line-height:1.6}
+.notes{display:grid;grid-template-columns:1.6fr 1.2fr 1fr;gap:clamp(20px,3vw,48px);margin-top:clamp(36px,5vw,64px);background:var(--paper);padding:clamp(22px,3vw,40px)}
+.notes div{display:grid;gap:8px;align-content:start;min-width:0}
+.notes p:not(.label){font-size:1.02rem;overflow-wrap:anywhere}
+@media(max-width:860px){.kgrid{grid-template-columns:1fr}.notes{grid-template-columns:1fr}.glance{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.kcol dl div{grid-template-columns:1fr;gap:2px}}
+/* book */
+.book .wrap{display:grid;gap:clamp(28px,4vw,52px)}
+.bookhead{text-align:center;display:grid;gap:16px;justify-items:center}
+.bookhead h2{font-size:clamp(2.6rem,7vw,5.6rem);font-style:italic}
+.trust{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap)}
+.hostcard{grid-template-columns:auto minmax(0,1.1fr) minmax(0,1.4fr);align-items:center;column-gap:clamp(24px,4vw,56px)}
+.hname{display:grid;gap:12px}
+.dates{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(24px,4vw,56px);grid-template-areas:"l l" "h h" "c c" "s k" "m k";grid-template-rows:auto auto auto auto 1fr}
+.dates>.label{grid-area:l}.dates>h3{grid-area:h}.dates>.cal{grid-area:c}.dates>.stay{grid-area:s}.dates>.dmsg{grid-area:m}.dates>.contact{grid-area:k;border-top:0;padding-top:0}
+.hostcard,.dates{background:var(--mist);padding:clamp(22px,3vw,40px);display:grid;gap:16px;align-content:start;min-width:0;margin:0}
+.book h3{font:500 clamp(1.5rem,2.4vw,2rem)/1.15 var(--display)}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.badges span{border:1px solid var(--rose);color:var(--rose-deep);font:500 .72rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:8px 12px;border-radius:999px}
+.hstats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hstats li{padding:14px 6px;text-align:center;border-left:1px solid var(--line)}
+.hstats li:first-child{border-left:0}
+.hstats b{display:block;font:500 clamp(1.3rem,2.2vw,1.8rem)/1.1 var(--display);font-variant-numeric:lining-nums}
+.hstats span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.hbio{color:var(--soft);font-size:1rem}
+.cal{display:grid;gap:14px;background:var(--paper);padding:clamp(14px,2vw,26px)}
+.calnav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.calnav button{background:none;border:1px solid var(--line);color:var(--ink);font:400 1.25rem/1 var(--body);width:40px;height:40px;border-radius:999px;cursor:pointer;transition:border-color .2s}
+.calnav button:hover:not(:disabled){border-color:var(--rose)}
+.calnav button:disabled{opacity:.3;cursor:default}
+.calkey{font-size:.78rem;color:var(--soft);display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center}
+.calkey span{display:flex;align-items:center;gap:7px}
+.calkey i{width:13px;height:13px;border-radius:50%;display:inline-block}
+.k-b{background:repeating-linear-gradient(135deg,var(--line) 0 2px,transparent 2px 4px);border:1px solid var(--line)}
+.k-s{background:var(--rose)}
+.calmonths{display:grid;grid-template-columns:repeat(var(--n,2),minmax(0,1fr));gap:clamp(18px,3vw,48px)}
+.calm h4{font:italic 500 1.35rem/1.2 var(--display);margin:0 0 12px;text-align:center}
+.calg{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));row-gap:4px;text-align:center;font-variant-numeric:tabular-nums lining-nums}
+.calg .wd{color:#4f7059;font:600 .64rem/2.4 var(--body);letter-spacing:.14em;text-transform:uppercase}
+.calg button,.calg .x{all:unset;box-sizing:border-box;display:grid;place-content:center;gap:1px;aspect-ratio:1;min-height:38px;font:400 .95rem/1 var(--body);color:var(--ink);cursor:pointer;border-radius:999px;position:relative}
+.calg .x{cursor:default}
+.calg button small{font-size:.6rem;color:var(--soft);letter-spacing:.02em}
+.calg button:hover:not(:disabled):not(.sel){box-shadow:inset 0 0 0 1px var(--rose)}
+.calg button:focus-visible{outline:2px solid var(--rose);outline-offset:1px}
+.calg .today{box-shadow:inset 0 0 0 1px var(--line)}
+.calg .p{color:var(--line);cursor:default}
+.calg .b{color:var(--soft);cursor:default;border-radius:0;background:repeating-linear-gradient(135deg,var(--mist) 0 3px,transparent 3px 7px);text-decoration:line-through;text-decoration-color:var(--line)}
+.calg .b small{display:none}
+.calg .in{background:color-mix(in srgb,var(--rose) 16%,transparent);border-radius:0}
+.calg .sel{background:var(--rose);color:#fff}
+.calg .sel small{color:#fff}
+.calg .sel.s0{border-radius:999px 0 0 999px}.calg .sel.s1{border-radius:0 999px 999px 0}.calg .sel.s0.only{border-radius:999px}
+.stay{display:grid;grid-template-columns:1fr 1fr 6rem;border:1px solid var(--line);background:var(--paper)}
+.stay>*{padding:12px 14px;display:grid;gap:5px;border-left:1px solid var(--line);min-width:0}
+.stay>*:first-child{border-left:0}
+.stay span{font:600 .66rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.stay b{font:500 1.1rem/1.2 var(--display)}
+.stay select{font:500 1.1rem/1.2 var(--display);color:var(--ink);background:none;border:0;padding:0;width:100%}
+.dmsg{color:var(--ink);font-size:1.02rem;min-height:1.7em}
+.dmsg b{font:500 1.25rem/1 var(--display)}
+.dmsg.err{color:var(--rose-deep)}
+.contact{display:grid;gap:14px;border-top:1px solid var(--line);padding-top:18px}
+.contact strong{font-weight:600}
+.crow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.addr{display:flex;align-items:center;gap:10px;min-width:0;flex-wrap:wrap}
+#d-addr{font-size:1rem;user-select:all;overflow-wrap:anywhere}
+#d-copy{background:none;border:1px solid var(--line);color:var(--soft);font:500 .68rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:8px 12px;border-radius:999px;cursor:pointer}
+#d-copy:hover{border-color:var(--rose);color:var(--rose-deep)}
+.dnote{color:var(--soft);font-size:.88rem}
+.dnote a{color:var(--rose-deep)}
+@media(max-width:1000px){.hostcard{grid-template-columns:1fr}.dates{grid-template-columns:minmax(0,1fr);grid-template-areas:"l" "h" "c" "s" "m" "k"}.dates>.contact{border-top:1px solid var(--line);padding-top:18px}}
+@media(max-width:560px){.calmonths{grid-template-columns:minmax(0,1fr)}.stay{grid-template-columns:1fr 1fr}.stay label{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}}
+.revhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px 24px;border-top:1px solid var(--line);padding-top:clamp(24px,3vw,40px)}
+.revhead a{font-size:.85rem;letter-spacing:.06em;color:var(--rose-deep)}
+.stars{color:var(--rose);letter-spacing:.1em;font-family:var(--body);font-size:.8em}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px) var(--gap)}
+.reviews figure{border-top:2px solid var(--rose);padding-top:16px;display:grid;gap:12px;align-content:start;min-width:0}
+.reviews blockquote{margin:0;font:italic 400 clamp(1.15rem,1.7vw,1.4rem)/1.35 var(--display)}
+.reviews figcaption{padding:0}
+@media(max-width:860px){.reviews{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.reviews{grid-template-columns:1fr}.hstats{grid-template-columns:1fr 1fr}.hstats li:nth-child(3){border-left:0}.hstats li:nth-child(n+3){border-top:1px solid var(--line)}}
+footer{border-top:1px solid var(--line);padding-block:28px;font-size:.8rem;color:var(--soft)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+
+
+/* room cards */
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,44px) var(--gap)}
+.room{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:8px;align-content:start;min-width:0}
+.room .cover{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--mist);margin-bottom:6px}
+.room .cover img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.room:hover .cover img{transform:scale(1.04)}
+.room .rname{font:500 1.55rem/1.15 var(--display);color:var(--ink)}
+.room:hover .rname{color:var(--rose-deep)}
+.room .rdesc{color:var(--soft);font-size:.98rem;line-height:1.55}
+.room:focus-visible{outline:2px solid var(--rose);outline-offset:6px}
+@media(max-width:900px){.rooms{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.rooms{grid-template-columns:1fr}}
+#lbc{position:fixed;left:0;right:0;bottom:14px;margin:0;text-align:center;color:#fff;font:400 .8rem/1.4 var(--body);letter-spacing:.14em;text-transform:uppercase;pointer-events:none}
+/* room collage */
+#rm{background:var(--paper);color:var(--ink);overflow:auto;place-items:start center}
+#rm::backdrop{background:var(--paper)}
+#rm .inner{width:min(1240px,100%);padding:clamp(18px,3vw,40px) var(--gutter) 48px;display:grid;gap:clamp(16px,2.2vw,28px);box-sizing:border-box}
+#rm header{display:flex;justify-content:space-between;align-items:end;gap:20px}
+#rm h3{font-size:clamp(1.8rem,4vw,3rem);font-style:italic}
+#rm header p{color:var(--soft);margin-top:8px;max-width:40rem}
+#rmx{position:static;flex:none;background:none;border:1px solid var(--line);color:var(--ink);font:500 .78rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:13px 20px;border-radius:999px;cursor:pointer}
+#rmx:hover{border-color:var(--ink)}
+.collage{display:grid;gap:var(--gap);margin-inline:auto;width:min(100%,calc(74vh * var(--r)));aspect-ratio:var(--r);overflow:hidden}
+.collage img{width:100%;height:100%;min-width:0;min-height:0;max-width:100%;max-height:none;object-fit:cover;display:block;background:var(--mist)}
+.collage img{cursor:zoom-in;transition:opacity .2s}.collage img:hover{opacity:.9}
+.collage.aside{--r:1.4167;grid-template-columns:1.125fr 1fr;grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+.collage.aside img:first-child{grid-row:1/3}
+.collage.three{--r:2.25;grid-template-columns:repeat(3,minmax(0,1fr))}
+.collage.pl{--r:2.0833;grid-template-columns:9fr 16fr}
+.collage.wide{--r:2;grid-template-columns:2fr 1fr;grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+.collage.wide img:first-child{grid-row:1/3}
+.collage.quad{--r:1.456;grid-template-columns:2.125fr 1fr 1fr;grid-template-rows:minmax(0,.75fr) minmax(0,.667fr)}
+.collage.quad img:first-child{grid-row:1/3}
+.collage.quad img:nth-child(2){grid-column:2/4}
+.collage.ll{--r:2.6667;grid-template-columns:1fr 1fr}
+@media(max-width:700px){.collage.wide img:first-child{grid-row:auto}.collage.quad img:first-child{grid-row:auto}.collage.quad img:nth-child(2){grid-column:auto}.collage.quad,.collage.wide,.collage.aside,.collage.three,.collage.pl,.collage.ll{grid-template-columns:1fr;grid-template-rows:none;aspect-ratio:auto;width:100%}.collage img{height:auto}.collage.aside img:first-child{grid-row:auto}#rm header{align-items:start}}
+.baths{margin-top:clamp(40px,5vw,72px);display:grid;gap:18px}
+.baths h3{font:italic 500 clamp(1.5rem,2.4vw,2rem)/1.1 var(--display)}
+.bathrow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap)}
+@media(max-width:620px){.bathrow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* lightbox */
+dialog{border:0;padding:0;background:transparent;max-width:100vw;max-height:100vh;width:100vw;height:100vh;display:none;place-items:center}
+dialog[open]{display:grid}
+dialog::backdrop{background:rgba(16,26,32,.92)}
+dialog img{width:auto;height:auto;max-width:94vw;max-height:84vh;object-fit:contain}
+dialog button{position:fixed;background:none;border:0;color:#fff;font:300 2.2rem/1 var(--body);cursor:pointer;padding:16px}
+#lbx{top:8px;right:12px}#lbp{left:6px;top:50%}#lbn{right:6px;top:50%}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ph img{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Villa Roccolo</a>
+    <nav aria-label="Sections">
+      <a href="#outside">Outside</a>
+      <a href="#house">The house</a>
+      <a href="#rooms">Bedrooms</a>
+      <a href="#day">A day here</a>
+      <a href="#know">Details</a>
+      <a class="btn" href="#book">Check dates</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <figure><img src="img/hero.jpg" alt="The pool at Villa Roccolo with Lake Maggiore and the mountains beyond" fetchpriority="high"></figure>
+  <div class="over"><div class="wrap">
+    <p class="label">Lake Maggiore · Piedmont · Italy</p>
+    <h1>Villa Roccolo</h1>
+    <p>A 1900s family villa above Lake Maggiore, with its pool, lush garden and 180° lake view.</p>
+  </div></div>
+</section>
+
+<div class="facts"><div class="wrap"><ul>
+  <li><b>10</b><span>Guests</span></li>
+  <li><b>6</b><span>Bedrooms</span></li>
+  <li><b>3½</b><span>Bathrooms</span></li>
+  <li><b>40 m²</b><span>Private pool</span></li>
+  <li><b id="st-rating">5.0</b><span>Airbnb rating</span></li>
+</ul></div></div>
+
+<section><div class="wrap intro">
+  <div class="text">
+    <p class="label">The story</p>
+    <h2>Step into <em>timeless elegance</em></h2>
+    <p class="lead">Some places don't just welcome you. They make time stand still.</p>
+    <p>Built in the early 1900s, Villa Roccolo was lovingly restored with deep respect for the family who first called it home. Original portraits still watch over the rooms, antique furnishings carry a century of stories, and every corner holds a quiet charm, now paired with modern comfort.</p>
+    <p>From the moment you arrive, something shifts: the light on the lake, the stillness of the garden. Six bedrooms and 3.5 bathrooms give family and friends space to gather, and to slip away for a book by the pool, a long lunch on the terrace, or a swim in the lake.</p>
+  </div>
+  <figure class="film"><video src="img/house.mp4" poster="img/house-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A short film of Villa Roccolo"></video></figure>
+</div></section>
+
+<section id="outside" class="tint"><div class="wrap">
+  <div class="head">
+    <p class="label">Outside</p>
+    <h2>Palms, pool and <em>the whole lake</em></h2>
+    <p>The villa sits in its lush garden on the hillside. Every corner looks out over the water, from the pool to the balcony where dinner is served.</p>
+  </div>
+  <div class="stack">
+    <div class="pair lp">
+      <div class="ph r43"><img src="img/out-villa.jpg" alt="The rose-coloured villa among palms, seen from the garden" loading="lazy"></div>
+      <div class="ph r34"><img src="img/out-camellia.jpg" alt="Pink camellias and palms in the garden, with the lake and the church tower beyond" loading="lazy"></div>
+    </div>
+    <div class="pair pl">
+      <div class="ph r34"><img src="img/out-pool2.jpg" alt="The pool with orange loungers above the lake and mountains" loading="lazy"></div>
+      <div class="ph r43"><img src="img/out-pool.jpg" alt="The pool terrace in morning light, the lake beyond" loading="lazy"></div>
+    </div>
+    <div class="pair ppp">
+      <div class="ph r34"><img src="img/out-lake.jpg" alt="The lake and mountains seen over the balcony balustrade" loading="lazy"></div>
+      <div class="ph r34"><img src="img/out-dog.jpg" alt="A small white dog in the open doorway to the balcony, the lake behind" loading="lazy"></div>
+      <div class="ph r34"><img src="img/out-tart.jpg" alt="An apricot tart on the balcony balustrade above the lake" loading="lazy"></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="house"><div class="wrap">
+  <div class="head">
+    <p class="label">The house</p>
+    <h2>Rooms with a <em>memory</em></h2>
+    <p>Elegant living spaces with antique furnishings and authentic period details throughout: a living room with a fireplace and a kitchen big enough for everyone to cook together.</p>
+  </div>
+  <div class="mosaic">
+    <figure class="c6"><div class="ph r43"><img src="img/in-living1.jpg" alt="The living room with velvet sofas and a carved cabinet" loading="lazy"></div></figure>
+    <figure class="c6"><div class="ph r43"><img src="img/in-living2.jpg" alt="The living room fireplace with hydrangeas on a glass table" loading="lazy"></div></figure>
+    <figure class="c8"><div class="ph r43"><img src="img/in-kitchen1.jpg" alt="The kitchen table with fruit and hydrangeas under an antique lamp" loading="lazy"></div></figure>
+    <figure class="c4 solo fill"><div class="ph"><img src="img/in-cabinet.jpg" alt="An antique kitchen cabinet with stained glass doors and old green bottles" loading="lazy"></div></figure>
+    <figure class="c4 solo fill"><div class="ph"><img src="img/in-window.jpg" alt="Camellias and palms seen through the kitchen window" loading="lazy"></div></figure>
+    <figure class="c8"><div class="ph r43"><img src="img/in-kitchen2.jpg" alt="The kitchen with its long table, cabinets and garden window" loading="lazy"></div></figure>
+  </div>
+</div></section>
+
+<section id="rooms" class="tint"><div class="wrap">
+  <div class="head">
+    <p class="label">Six bedrooms</p>
+    <h2>Sleep under <em>crystal</em></h2>
+    <p>Each bedroom tells its own story, blending historic charm with modern comfort for a truly restorative stay. Carved walnut beds, white linen, tall windows, balconies, and a chandelier in almost every room. Click a room to see its photos.</p>
+  </div>
+  <div class="rooms">
+    <button class="room" type="button" data-room="formal" data-name="The Formal Suite" data-desc="Damask wallpaper, antique mirrors and a balcony over the lake." data-layout="aside" data-order="2,1,3" id="room-formal">
+      <span class="cover"><img src="img/rooms/formal-1.jpg" alt="The Formal Suite" loading="lazy" style="object-position:50% 55%"></span>
+      <span class="rname">The Formal Suite</span>
+      <span class="rdesc">Damask wallpaper, antique mirrors and a balcony over the lake.</span>
+    </button>
+    <button class="room" type="button" data-room="floral" data-name="The Floral Room" data-desc="Botanical wallpaper, a crystal chandelier and doors to a private balcony." data-layout="three" data-order="1,3,2" id="room-floral">
+      <span class="cover"><img src="img/rooms/floral-1.jpg" alt="The Floral Room" loading="lazy" style="object-position:50% 62%"></span>
+      <span class="rname">The Floral Room</span>
+      <span class="rdesc">Botanical wallpaper, a crystal chandelier and doors to a private balcony.</span>
+    </button>
+    <button class="room" type="button" data-room="garden" data-name="The Garden Suite" data-desc="Bright and airy, with a checkered tile floor and a vintage chandelier." data-layout="pl" data-order="1,2" id="room-garden">
+      <span class="cover"><img src="img/rooms/garden-1.jpg" alt="The Garden Suite" loading="lazy" style="object-position:50% 62%"></span>
+      <span class="rname">The Garden Suite</span>
+      <span class="rdesc">Bright and airy, with a checkered tile floor and a vintage chandelier.</span>
+    </button>
+    <button class="room" type="button" data-room="crystal" data-name="The Crystal Room" data-desc="An ornate walnut bed under a crystal chandelier, with its own balcony." data-layout="aside" data-order="3,1,2" id="room-crystal">
+      <span class="cover"><img src="img/rooms/crystal-1.jpg" alt="The Crystal Room" loading="lazy" style="object-position:50% 55%"></span>
+      <span class="rname">The Crystal Room</span>
+      <span class="rdesc">An ornate walnut bed under a crystal chandelier, with its own balcony.</span>
+    </button>
+    <button class="room" type="button" data-room="blue" data-name="Blue Lake" data-desc="Pale blue walls, a walnut bed, a balcony and a window onto the lake." data-layout="quad" data-order="2,1,3,4" id="room-blue">
+      <span class="cover"><img src="img/rooms/blue-2.jpg" alt="Blue Lake" loading="lazy" style="object-position:50% 42%"></span>
+      <span class="rname">Blue Lake</span>
+      <span class="rdesc">Pale blue walls, a walnut bed, a balcony and a window onto the lake.</span>
+    </button>
+    <button class="room" type="button" data-room="yellow" data-name="The Yellow Room" data-desc="Sunny yellow walls, a carved bed and direct access to the terrace and pool." data-layout="wide" data-order="1,2,3" id="room-yellow">
+      <span class="cover"><img src="img/rooms/yellow-1.jpg" alt="The Yellow Room" loading="lazy" style="object-position:50% 55%"></span>
+      <span class="rname">The Yellow Room</span>
+      <span class="rdesc">Sunny yellow walls, a carved bed and direct access to the terrace and pool.</span>
+    </button>
+  </div>
+
+  <div class="baths">
+    <h3>The bathrooms</h3>
+    <div class="bathrow">
+      <figure><div class="ph r34"><img src="img/bath-first2.jpg" alt="A first-floor bathroom" loading="lazy"></div><figcaption>First floor</figcaption></figure>
+      <figure><div class="ph r34"><img src="img/bath-first1.jpg" alt="A first-floor bathroom" loading="lazy"></div><figcaption>First floor</figcaption></figure>
+      <figure><div class="ph r34"><img src="img/bath-ground.jpg" alt="The ground-floor bathroom" loading="lazy"></div><figcaption>Ground floor</figcaption></figure>
+      <figure><div class="ph r34"><img src="img/bath-lower.jpg" alt="The lower-level bathroom" loading="lazy"></div><figcaption>Lower level</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="floors">
+    <div><h3>First floor</h3><ul><li>Four bedrooms, all with balconies</li><li>Two full bathrooms</li></ul></div>
+    <div><h3>Ground floor</h3><ul><li>One bedroom with garden view</li><li>Kitchen, living room, office</li><li>Balcony with dining table for ten</li><li>Half bathroom</li></ul></div>
+    <div><h3>Lower level</h3><ul><li>One bedroom with its own bathroom</li><li>Direct access to the terrace and pool</li></ul></div>
+  </div>
+</div></section>
+
+<section class="band">
+  <figure><img src="img/panorama.jpg" alt="Glowing evening clouds over the mountains and Lake Maggiore, seen from the villa" loading="lazy" style="object-position:50% 48%"></figure>
+  <blockquote><div class="wrap"><p>“This place is heaven on earth.”</p><cite>Leandra, guest, June 2026</cite></div></blockquote>
+</section>
+
+<section class="day" id="day"><div class="wrap">
+  <div class="head">
+    <p class="label">A day at Roccolo</p>
+    <h2>From first light to the <em>last candle</em></h2>
+    <p>Nothing here needs planning. The day arranges itself around the lake.</p>
+  </div>
+
+  <article class="moment">
+    <div class="when"><time>7:00</time><h3>The sun comes up over the water</h3><p>The house faces east across the lake. Early risers get to enjoy the spectacle.</p></div>
+    <div class="ph r21"><img src="img/sunrise.jpg" alt="Sunrise over Lake Maggiore from the garden" loading="lazy" style="object-position:50% 62%"></div>
+  </article>
+
+  <article class="moment">
+    <div class="when"><time>9:00</time><h3>Breakfast, slowly</h3><p>A big farmhouse table in the kitchen, or coffee carried out through the French doors to the balcony.</p></div>
+    <div class="pair ll">
+      <div class="ph" style="aspect-ratio:9/10"><img src="img/fruit.jpg" alt="Fruit and hydrangeas on the kitchen table under an antique lamp" loading="lazy" style="object-position:50% 78%"></div>
+      <div class="ph" style="aspect-ratio:9/10"><img src="img/breakfast.jpg" alt="Breakfast on the balcony: toast, honey and hydrangeas above the lake" loading="lazy" style="object-position:50% 44%"></div>
+    </div>
+  </article>
+
+  <article class="moment">
+    <div class="when"><time>12:00</time><h3>The pool</h3><p>Forty square metres of water on the edge of the hillside, with loungers and the lake between you and the mountains.</p></div>
+    <div class="pair ll">
+      <div class="ph r43"><img src="img/poolside.jpg" alt="The pool with striped orange parasols and loungers above the lake and the church tower" loading="lazy"></div>
+      <div class="ph r43"><img src="img/poolkids.jpg" alt="Three children on a rainbow float in the pool, the lake behind" loading="lazy"></div>
+    </div>
+  </article>
+
+  <article class="moment">
+    <div class="when"><time>15:00</time><h3>Down to the lake</h3><p>Ten minutes on foot through the garden brings you to a small pebble beach and clear, cool water. The climb back is a good little workout.</p></div>
+    <div class="pair lp">
+      <div class="ph" style="aspect-ratio:16/10.4"><img src="img/lakeswim.jpg" alt="Swimmers and paddleboarders on Lake Maggiore" loading="lazy" style="object-position:50% 0%"></div>
+      <div class="ph" style="aspect-ratio:9/10.4"><img src="img/steps.jpg" alt="Stone steps under a leafy pergola leading up to the terrace" loading="lazy" style="object-position:50% 55%"></div>
+    </div>
+  </article>
+
+  <article class="moment">
+    <div class="when"><time>20:00</time><h3>Dinner for ten on the balcony</h3><p>The stone table seats everyone. The clouds over the far shore do the rest.</p></div>
+    <div class="pair ll">
+      <div class="ph" style="aspect-ratio:3/3.5"><img src="img/dinner.jpg" alt="Dinner on the balcony as the evening sky turns gold over the lake" loading="lazy" style="object-position:50% 0%"></div>
+      <div class="ph" style="aspect-ratio:3/3.5"><img src="img/dusk.jpg" alt="The balcony table at dusk, seen through the open doors" loading="lazy" style="object-position:50% 0%"></div>
+    </div>
+  </article>
+
+  <article class="moment">
+    <div class="when"><time>23:00</time><h3>The far shore lights up</h3><p>One lantern, a quiet lake, and the villages opposite strung out like a necklace.</p></div>
+    <div class="ph r21"><img src="img/night.jpg" alt="Night view from the balcony with village lights across the lake" loading="lazy" style="object-position:50% 36%"></div>
+  </article>
+</div></section>
+
+<section class="know" id="know"><div class="wrap">
+  <div class="head">
+    <p class="label">Good to know</p>
+    <h2>The <em>practical</em> part</h2>
+  </div>
+
+  <ul class="glance">
+    <li><b>4 pm</b><span>Check-in, with a smart lock</span></li>
+    <li><b>10 am</b><span>Check-out</span></li>
+    <li><b>5 min</b><span>On foot to the village</span></li>
+    <li><b>10 min</b><span>Downhill to the pebble beach</span></li>
+    <li><b>40 m²</b><span>Private pool, April to early October</span></li>
+    <li><b>4 cars</b><span>Two covered spaces, two on the lawn</span></li>
+  </ul>
+
+  <div class="kgrid">
+    <div class="kcol">
+      <h3>Outdoors</h3>
+      <dl>
+        <div><dt>Pool</dt><dd>Unheated, about 40 m², with two small gates that can be closed.</dd></div>
+        <div><dt>Garden</dt><dd>Fully fenced, with panoramic views and a ping-pong table under the large pine tree.</dd></div>
+        <div><dt>Lake</dt><dd>A lovely walk down to a small pebble beach. The way back up is a good little workout.</dd></div>
+        <div><dt>Road</dt><dd>The access road is gravel: fine for large cars, not for very low ones.</dd></div>
+      </dl>
+    </div>
+    <div class="kcol">
+      <h3>Indoors</h3>
+      <dl>
+        <div><dt>Cooling</dt><dd>No air conditioning. The thick old walls keep the house cool, and every bedroom has a fan.</dd></div>
+        <div><dt>Wi-Fi</dt><dd>Throughout the house, though not at the pool.</dd></div>
+        <div><dt>Kitchen</dt><dd>Fully equipped. The living room has a TV and a fireplace, and there's also an office.</dd></div>
+        <div><dt>Laundry</dt><dd>Washer, dryer and drying rack. Extra cleaning during your stay on request.</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div><p class="label">Children</p><p>Best for babies not yet crawling, or children of 8 and over who can swim. The terraces and pool make the house unsuitable for toddlers.</p></div>
+    <div><p class="label">Dogs</p><p>One dog is welcome. The garden is fenced, and there is a €30 extra cleaning fee.</p></div>
+    <div><p class="label">Registration</p><p>CIN IT103049C2PBONRFHO</p></div>
+  </div>
+</div></section>
+
+<section class="book" id="book"><div class="wrap">
+  <div class="bookhead">
+    <p class="label">Come and stay</p>
+    <h2>Your week on the lake</h2>
+  </div>
+
+  <div class="trust">
+    <div class="hostcard">
+      <div class="hname">
+        <p class="label">Your host</p>
+        <h3>Carol</h3>
+        <p class="badges"><span>Superhost</span><span>Guest favourite</span></p>
+      </div>
+      <ul class="hstats">
+        <li><b id="st-years">10</b><span>years hosting</span></li>
+        <li><b id="st-hostreviews">110</b><span>host reviews</span></li>
+        <li><b id="st-hostrating">4.95</b><span>host rating</span></li>
+        <li><b id="st-response">100%</b><span>response rate</span></li>
+      </ul>
+      <p class="hbio">French, raised between England and France. Carol loves restoring special houses while respecting their character, and shares her favourite local addresses with every guest. She speaks English and French and co-hosts with Daniel.</p>
+    </div>
+
+    <div class="dates" id="dates">
+      <p class="label">Book your stay</p>
+      <h3>Choose your dates</h3>
+      <div class="cal" id="cal">
+        <div class="calnav"><button type="button" id="cal-prev" aria-label="Earlier months">‹</button><span class="calkey"><span><i class="k-b"></i>Booked</span><span><i class="k-s"></i>Your stay</span></span><button type="button" id="cal-next" aria-label="Later months">›</button></div>
+        <div class="calmonths" id="cal-months"></div>
+      </div>
+      <div class="stay">
+        <div><span>Check-in</span><b id="s-in">Select a date</b></div>
+        <div><span>Check-out</span><b id="s-out">Select a date</b></div>
+        <label for="d-g"><span>Guests</span><select id="d-g"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></label>
+      </div>
+      <p class="dmsg" id="d-msg" aria-live="polite">Click your arrival day, then your departure day.</p>
+      <div class="contact">
+        <p><strong>To book, write to Carol.</strong> Send her your dates and she will confirm availability and the price, usually within a few hours.</p>
+        <div class="crow"><a class="btn big" id="d-mail" href="mailto:carolmasonandco@gmail.com">Email Carol</a><span class="addr"><span id="d-addr">carolmasonandco@gmail.com</span><button type="button" id="d-copy">Copy</button></span></div>
+        <p class="dnote">Prefer to book through Airbnb? <a id="d-go" href="https://www.airbnb.com/rooms/1551821909593156815" target="_blank" rel="noopener">See these dates on Airbnb</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="revhead">
+    <h3><span class="stars" aria-hidden="true">★★★★★</span> <span id="rv-rating">5.0</span> from <span id="rv-count">6</span> guest reviews</h3>
+    <a href="https://www.airbnb.com/rooms/1551821909593156815/reviews" target="_blank" rel="noopener">Read the full reviews on Airbnb</a>
+  </div>
+  <div class="reviews" id="rv-list">
+    <figure><blockquote>“We would give 10 stars if we could!”</blockquote><figcaption>Adrian · Burgdorf, Switzerland</figcaption></figure>
+    <figure><blockquote>“We would come back in a heartbeat.”</blockquote><figcaption>Zoe · Seattle, Washington · June 2026</figcaption></figure>
+    <figure><blockquote>“This place is heaven on earth.”</blockquote><figcaption>Leandra · June 2026</figcaption></figure>
+    <figure><blockquote>“There are so many beautiful details. It’s truly a family house!”</blockquote><figcaption>Annika · May 2026</figcaption></figure>
+    <figure><blockquote>“One of the most beautiful places we have ever been to.”</blockquote><figcaption>Roland · Untersiggenthal, Switzerland · May 2026</figcaption></figure>
+    <figure><blockquote>“Perfect for a great stay as a group, with an amazing view.”</blockquote><figcaption>Patrick · April 2026</figcaption></figure>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>Villa Roccolo · Gonte, Oggebbio (VB) · Lake Maggiore, Italy</span><span>Photographs taken at the house</span></div></footer>
+
+<dialog id="rm" aria-labelledby="rmt">
+  <div class="inner">
+    <header><div><h3 id="rmt"></h3><p id="rmd"></p></div><button id="rmx" type="button">Close</button></header>
+    <div class="collage" id="rmc"></div>
+  </div>
+</dialog>
+
+<dialog id="lb" aria-label="Photo viewer">
+  <img id="lbi" alt="">
+  <p id="lbc"></p>
+  <button id="lbx" aria-label="Close">×</button>
+  <button id="lbp" aria-label="Previous photo">‹</button>
+  <button id="lbn" aria-label="Next photo">›</button>
+</dialog>
+
+<script>
+(function(){
+  var v=document.querySelector('.film video');if(v){v.addEventListener('click',function(){v.paused?v.play():v.pause()});if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();v.controls=true}}
+  var lb=document.getElementById('lb'),big=document.getElementById('lbi'),cap=document.getElementById('lbc'),set=[],title='',i=0;
+  var prev=document.getElementById('lbp'),next=document.getElementById('lbn');
+  function show(n){i=(n+set.length)%set.length;big.src=set[i].src;big.alt=set[i].alt;cap.textContent=title?title+(set.length>1?'  ·  '+(i+1)+' / '+set.length:''):'';prev.hidden=next.hidden=set.length<2}
+  function open(list,n,t){set=list;title=t||'';show(n);if(lb.showModal){try{lb.showModal()}catch(e){lb.setAttribute('open','')}}}
+  var imgs=[].slice.call(document.querySelectorAll('.ph img')).map(function(im){return{src:im.src,alt:im.alt,el:im}});
+  imgs.forEach(function(o,n){var p=o.el.parentNode;p.tabIndex=0;p.setAttribute('role','button');p.setAttribute('aria-label','Enlarge photo: '+o.alt);
+    p.addEventListener('click',function(){open(imgs,n)});
+    p.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(imgs,n)}})});
+  /* Live data. Reviews, host numbers and direct prices come from a Google Sheet (tabs: Reviews, Numbers, Prices).
+     Booked dates come from /api/calendar. Everything falls back quietly if a source can't be read. */
+  var SHEET_ID='11b-XoQFPUBWdhmk883s36bzqBehvrgClG8YLrqWVjik';
+  function csv(t){var rows=[],row=[],c='',q=false;for(var i=0;i<t.length;i++){var ch=t[i];
+      if(q){if(ch=='"'){if(t[i+1]=='"'){c+='"';i++}else q=false}else c+=ch}
+      else if(ch=='"')q=true;else if(ch==','){row.push(c);c=''}else if(ch=='\n'){row.push(c);rows.push(row);row=[];c=''}else if(ch!='\r')c+=ch}
+    if(c||row.length){row.push(c);rows.push(row)}return rows.map(function(r){return r.map(function(x){return (x||'').trim()})})}
+  function tab(n){if(!SHEET_ID)return Promise.reject();return fetch('https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:csv&headers=1&sheet='+encodeURIComponent(n)).then(function(r){if(!r.ok)throw 0;return r.text()}).then(csv)}
+  function set(id,v){var e=document.getElementById(id);if(e&&v)e.textContent=v}
+  var numbers=tab('Numbers').then(function(rows){var m={};rows.slice(1).forEach(function(r){if(r[0])m[r[0].toLowerCase()]=r[1]||''});return m}).catch(function(){return {}});
+
+  (function(){var g=document.getElementById('d-g'),go=document.getElementById('d-go'),mail=document.getElementById('d-mail'),msg=document.getElementById('d-msg'),
+      base='https://www.airbnb.com/rooms/1551821909593156815',EMAIL='carolmasonandco@gmail.com',
+      MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var booked=[],prices=[],cfg={},off=0,ci=null,co=null,t=new Date(),N=2;
+    function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+    function dt(s){return new Date(s+'T12:00')}
+    function nice(s){var d=dt(s);return d.getDate()+' '+MN[d.getMonth()]+' '+d.getFullYear()}
+    function add(s,n){var d=dt(s);d.setDate(d.getDate()+n);return iso(d)}
+    function isBooked(s){return booked.some(function(r){return s>=r[0]&&s<r[1]})}
+    function clash(a,b){return booked.some(function(r){return a<r[1]&&b>r[0]})}
+    function parseDay(v){if(!v)return '';var m=/^(\d{4})-(\d{1,2})-(\d{1,2})/.exec(v);if(m)return m[1]+'-'+('0'+m[2]).slice(-2)+'-'+('0'+m[3]).slice(-2);
+      m=/^(\d{1,2})[\/.](\d{1,2})[\/.](\d{4})$/.exec(v);if(m)return m[3]+'-'+('0'+m[2]).slice(-2)+'-'+('0'+m[1]).slice(-2);
+      var d=new Date(v);return isNaN(d)?'':iso(d)}
+    function num(v){var n=parseFloat(String(v||'').replace(/[^0-9.,]/g,'').replace(/,(\d{3})/g,'$1').replace(',','.'));return isNaN(n)?null:n}
+    function rule(s){var hit=null;prices.forEach(function(r){if((!r.from||s>=r.from)&&(!r.to||s<=r.to))hit=r});return hit}
+    function money(n){return (cfg.currency||'€')+Math.round(n).toLocaleString('en-GB')}
+    function draw(){var box=document.getElementById('cal-months');box.textContent='';var today=iso(t);N=matchMedia('(min-width:1000px)').matches?3:2;box.style.setProperty('--n',N);
+      for(var k=0;k<N;k++){var d=new Date(t.getFullYear(),t.getMonth()+off+k,1),y=d.getFullYear(),m=d.getMonth();
+        var w=document.createElement('div');w.className='calm';var h=document.createElement('h4');h.textContent=MN[m]+' '+y;w.appendChild(h);
+        var gr=document.createElement('div');gr.className='calg';
+        ['Mo','Tu','We','Th','Fr','Sa','Su'].forEach(function(x){var e=document.createElement('span');e.className='wd';e.textContent=x;gr.appendChild(e)});
+        var lead=(d.getDay()+6)%7;for(var j=0;j<lead;j++){var sp=document.createElement('span');sp.className='x';gr.appendChild(sp)}
+        var n=new Date(y,m+1,0).getDate();for(var day=1;day<=n;day++)(function(s2,day){
+          var e=document.createElement('button');e.type='button';e.textContent=day;var cl=[],lab=nice(s2);
+          var bk=isBooked(s2),canOut=ci&&!co&&s2>ci&&!clash(ci,s2);
+          if(s2<today){cl.push('p');e.disabled=true}
+          else if(bk&&!canOut){cl.push('b');e.disabled=true;lab+=', booked'}
+          else{var r=rule(s2);if(r&&r.price!=null&&!bk){var sm=document.createElement('small');sm.textContent=Math.round(r.price);e.appendChild(sm);lab+=', '+money(r.price)+' per night'}}
+          if(s2===today)cl.push('today');
+          if(ci&&s2===ci){cl.push('sel','s0');if(!co)cl.push('only')}
+          if(co&&s2===co)cl.push('sel','s1');
+          if(ci&&co&&s2>ci&&s2<co)cl.push('in');
+          e.className=cl.join(' ');e.setAttribute('aria-label',lab);
+          e.addEventListener('click',function(){pick(s2)});gr.appendChild(e)})(iso(new Date(y,m,day)),day);
+        w.appendChild(gr);box.appendChild(w)}
+      document.getElementById('cal-prev').disabled=off<=0;document.getElementById('cal-next').disabled=off>=16}
+    function pick(s2){
+      if(!ci||co||s2<=ci){if(isBooked(s2))return;ci=s2;co=null}
+      else if(clash(ci,s2)){if(isBooked(s2))return;ci=s2;co=null}
+      else co=s2;
+      draw();upd()}
+    function upd(){var q='?adults='+g.value,guests=g.value+(g.value>1?' guests':' guest');msg.className='dmsg';
+      document.getElementById('s-in').textContent=ci?nice(ci):'Select a date';document.getElementById('s-out').textContent=co?nice(co):'Select a date';
+      var subject='Villa Roccolo booking enquiry',body='Hello Carol,\n\nI would like to stay at Villa Roccolo.\n\n';
+      if(ci&&co){var nights=Math.round((dt(co)-dt(ci))/864e5),total=0,known=true;
+        for(var i=0;i<nights;i++){var r=rule(add(ci,i));if(r&&r.price!=null)total+=r.price;else known=false}
+        var first=rule(ci),min=first&&first.min?first.min:0;
+        q+='&check_in='+ci+'&check_out='+co;
+        var txt=nights+(nights>1?' nights':' night')+' for '+guests;
+        if(min&&nights<min){msg.className='dmsg err';msg.textContent='These dates have a minimum stay of '+min+' nights.'}
+        else if(known&&total>0){var fee=num(cfg['cleaning fee']);msg.innerHTML='';msg.appendChild(document.createTextNode(txt+': about '));var bb=document.createElement('b');bb.textContent=money(total);msg.appendChild(bb);
+          msg.appendChild(document.createTextNode((fee?' plus '+money(fee)+' cleaning':'')+'. Carol will confirm the final price.'))}
+        else msg.textContent=txt+'. Carol will confirm the price.';
+        subject='Villa Roccolo: '+nice(ci)+' to '+nice(co);body+='Check-in: '+nice(ci)+'\nCheck-out: '+nice(co)+' ('+nights+' nights)\nGuests: '+g.value+'\n\n'}
+      else{msg.textContent=ci?'Now click your departure day.':'Click your arrival day, then your departure day.';body+='Dates: \nGuests: '+g.value+'\n\n'}
+      body+='Thank you,\n';
+      go.href=base+q;mail.href='mailto:'+EMAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body)}
+    g.addEventListener('change',upd);
+    document.getElementById('cal-prev').onclick=function(){off=Math.max(0,off-N);draw()};
+    document.getElementById('cal-next').onclick=function(){off=Math.min(16,off+N);draw()};
+    addEventListener('resize',function(){var n=matchMedia('(min-width:1000px)').matches?3:2;if(n!==N)draw()});
+    document.getElementById('d-copy').onclick=function(){var b=this,done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1800)};
+      try{navigator.clipboard.writeText(EMAIL).then(done,sel)}catch(e){sel()}
+      function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('d-addr'));var x=getSelection();x.removeAllRanges();x.addRange(r)}};
+    draw();upd();
+    fetch('/api/calendar').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){if(j&&Array.isArray(j.booked)){booked=j.booked;if(ci&&(isBooked(ci)||(co&&clash(ci,co)))){ci=co=null}draw();upd()}}).catch(function(){});
+    tab('Prices').then(function(rows){prices=rows.slice(1).map(function(r){return{from:parseDay(r[0]),to:parseDay(r[1]),price:num(r[2]),min:num(r[3])}}).filter(function(r){return r.price!=null||r.min});draw();upd()}).catch(function(){});
+    numbers.then(function(m){cfg=m;upd()})})();
+
+  tab('Reviews').then(function(rows){
+    var list=rows.slice(1).filter(function(r){return r[0]&&r[3]});if(!list.length)return;
+    var box=document.getElementById('rv-list');box.textContent='';
+    list.forEach(function(r){var f=document.createElement('figure'),b=document.createElement('blockquote'),c=document.createElement('figcaption');
+      b.textContent='“'+r[3].replace(/^["“]+|["”]+$/g,'')+'”';c.textContent=[r[0],r[1],r[2]].filter(Boolean).join(' · ');f.appendChild(b);f.appendChild(c);box.appendChild(f)});
+    set('rv-count',String(list.length));
+    return numbers.then(function(m){set('rv-rating',m['airbnb rating']);set('st-rating',m['airbnb rating']);set('rv-count',m['number of reviews']);
+      set('st-years',m['years hosting']);set('st-hostreviews',m['host reviews']);set('st-hostrating',m['host rating']);set('st-response',m['response rate'])})
+  }).catch(function(){});
+  var rm=document.getElementById('rm'),rmc=document.getElementById('rmc');
+  [].forEach.call(document.querySelectorAll('.room'),function(b){
+    var d=b.dataset;b.setAttribute('aria-label',d.name+': view photos');
+    b.addEventListener('click',function(){
+      document.getElementById('rmt').textContent=d.name;document.getElementById('rmd').textContent=d.desc;
+      rmc.className='collage '+d.layout;
+      rmc.innerHTML=d.order.split(',').map(function(n,j){return '<img src="img/rooms/'+d.room+'-'+n+'.jpg" alt="'+d.name+', photo '+(j+1)+'">'}).join('');
+      var list=[].map.call(rmc.querySelectorAll('img'),function(im){return{src:im.src,alt:im.alt}});
+      [].forEach.call(rmc.querySelectorAll('img'),function(im,j){im.tabIndex=0;im.setAttribute('role','button');im.setAttribute('aria-label','Enlarge '+im.alt);
+        im.addEventListener('click',function(){open(list,j,d.name)});
+        im.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(list,j,d.name)}})});
+      if(rm.showModal){try{rm.showModal()}catch(e){rm.setAttribute('open','')}}rm.scrollTop=0})});
+  document.getElementById('rmx').onclick=function(){rm.close()};
+  document.getElementById('lbx').onclick=function(){lb.close()};
+  prev.onclick=function(e){e.stopPropagation();show(i-1)};
+  next.onclick=function(e){e.stopPropagation();show(i+1)};
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
+  lb.addEventListener('keydown',function(e){if(set.length<2)return;if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)});
+})();
+</script>
+</body>
+</html>
