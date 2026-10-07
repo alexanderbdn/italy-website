@@ -662,7 +662,7 @@ dialog button{position:fixed;background:none;border:0;color:#fff;font:300 2.2rem
         var txt=nights+(nights>1?' nights':' night')+' for '+guests;
         if(min&&nights<min){msg.className='dmsg err';msg.textContent='These dates have a minimum stay of '+min+' nights.'}
         else if(known&&total>0){var fee=num(cfg['cleaning fee']);msg.innerHTML='';msg.appendChild(document.createTextNode(txt+': about '));var bb=document.createElement('b');bb.textContent=money(total);msg.appendChild(bb);
-          msg.appendChild(document.createTextNode((fee?' plus '+money(fee)+' cleaning':'')+'. Carol will confirm the final price.'))}
+          msg.appendChild(document.createTextNode((fee?' plus '+money(fee)+' cleaning':'')))}
         else msg.textContent=txt+'. Carol will confirm the price.';
         subject='Villa Roccolo: '+nice(ci)+' to '+nice(co);body+='Check-in: '+nice(ci)+'\nCheck-out: '+nice(co)+' ('+nights+' nights)\nGuests: '+g.value+'\n\n'}
       else{msg.textContent=ci?'Now click your departure day.':'Click your arrival day, then your departure day.';body+='Dates: \nGuests: '+g.value+'\n\n'}
