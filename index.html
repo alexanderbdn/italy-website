@@ -193,7 +193,8 @@ figcaption{font-size:.85rem;color:var(--soft);padding-top:10px;letter-spacing:.0
 .calg .sel{background:var(--rose);color:#fff}
 .calg .sel small{color:#fff}
 .calg .sel.s0{border-radius:999px 0 0 999px}.calg .sel.s1{border-radius:0 999px 999px 0}.calg .sel.s0.only{border-radius:999px}
-.stay{display:grid;grid-template-columns:1fr 1fr 6rem;border:1px solid var(--line);background:var(--paper)}
+.stay{display:grid;grid-template-columns:1fr 1fr 6rem 7rem;border:1px solid var(--line);background:var(--paper)}
+.stay .pet{cursor:pointer}.stay .pet i{display:flex;align-items:center;gap:8px;font:500 1.1rem/1.2 var(--display);font-style:normal}.stay .pet input{width:17px;height:17px;margin:0;accent-color:var(--rose-deep)}
 .stay>*{padding:12px 14px;display:grid;gap:5px;border-left:1px solid var(--line);min-width:0}
 .stay>*:first-child{border-left:0}
 .stay span{font:600 .66rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
@@ -212,7 +213,7 @@ figcaption{font-size:.85rem;color:var(--soft);padding-top:10px;letter-spacing:.0
 .dnote{color:var(--soft);font-size:.88rem}
 .dnote a{color:var(--rose-deep)}
 @media(max-width:1000px){.hostcard{grid-template-columns:1fr}.dates{grid-template-columns:minmax(0,1fr);grid-template-areas:"l" "h" "c" "s" "m" "k"}.dates>.contact{border-top:1px solid var(--line);padding-top:18px}}
-@media(max-width:560px){.calmonths{grid-template-columns:minmax(0,1fr)}.stay{grid-template-columns:1fr 1fr}.stay label{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}}
+@media(max-width:560px){.calmonths{grid-template-columns:minmax(0,1fr)}.stay{grid-template-columns:1fr 1fr}.stay label{border-top:1px solid var(--line)}.stay label:not(.pet){border-left:0}}
 .revhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px 24px;border-top:1px solid var(--line);padding-top:clamp(24px,3vw,40px)}
 .revhead a{font-size:.85rem;letter-spacing:.06em;color:var(--rose-deep)}
 .stars{color:var(--rose);letter-spacing:.1em;font-family:var(--body);font-size:.8em}
@@ -509,7 +510,7 @@ dialog button{position:fixed;background:none;border:0;color:#fff;font:300 2.2rem
 
   <div class="notes">
     <div><p class="label">Children</p><p>Best for babies not yet crawling, or children of 8 and over who can swim. The terraces and pool make the house unsuitable for toddlers.</p></div>
-    <div><p class="label">Dogs</p><p>One dog is welcome. The garden is fenced, and there is a €60 extra cleaning fee.</p></div>
+    <div><p class="label">Dogs</p><p>One dog is welcome. The garden is fenced, and there is a €30 extra cleaning fee.</p></div>
     <div><p class="label">Registration</p><p>CIN IT103049C2PBONRFHO</p></div>
   </div>
 </div></section>
@@ -547,6 +548,7 @@ dialog button{position:fixed;background:none;border:0;color:#fff;font:300 2.2rem
         <div><span>Check-in</span><b id="s-in">Select a date</b></div>
         <div><span>Check-out</span><b id="s-out">Select a date</b></div>
         <label for="d-g"><span>Guests</span><select id="d-g"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></label>
+        <label class="pet" for="d-pet"><span>Pet</span><i><input type="checkbox" id="d-pet"> Yes</i></label>
       </div>
       <p class="dmsg" id="d-msg" aria-live="polite">Click your arrival day, then your departure day.</p>
       <div class="contact">
@@ -652,7 +654,7 @@ dialog button{position:fixed;background:none;border:0;color:#fff;font:300 2.2rem
       else if(clash(ci,s2)){if(isBooked(s2))return;ci=s2;co=null}
       else co=s2;
       draw();upd()}
-    function upd(){var q='?adults='+g.value,guests=g.value+(g.value>1?' guests':' guest');msg.className='dmsg';
+    function upd(){var pet=document.getElementById('d-pet').checked,petfee=pet?(num(cfg['pet fee'])||60):0;var q='?adults='+g.value,guests=g.value+(g.value>1?' guests':' guest');msg.className='dmsg';
       document.getElementById('s-in').textContent=ci?nice(ci):'Select a date';document.getElementById('s-out').textContent=co?nice(co):'Select a date';
       var subject='Villa Roccolo booking enquiry',body='Hello Carol,\n\nI would like to stay at Villa Roccolo.\n\n';
       if(ci&&co){var nights=Math.round((dt(co)-dt(ci))/864e5),total=0,known=true;
@@ -661,14 +663,14 @@ dialog button{position:fixed;background:none;border:0;color:#fff;font:300 2.2rem
         q+='&check_in='+ci+'&check_out='+co;
         var txt=nights+(nights>1?' nights':' night')+' for '+guests;
         if(min&&nights<min){msg.className='dmsg err';msg.textContent='These dates have a minimum stay of '+min+' nights.'}
-        else if(known&&total>0){var fee=num(cfg['cleaning fee']);msg.innerHTML='';msg.appendChild(document.createTextNode(txt+': about '));var bb=document.createElement('b');bb.textContent=money(total);msg.appendChild(bb);
-          msg.appendChild(document.createTextNode((fee?' plus '+money(fee)+' cleaning.':'')))}
-        else msg.textContent=txt+'. Carol will confirm the price.';
-        subject='Villa Roccolo: '+nice(ci)+' to '+nice(co);body+='Check-in: '+nice(ci)+'\nCheck-out: '+nice(co)+' ('+nights+' nights)\nGuests: '+g.value+'\n\n'}
-      else{msg.textContent=ci?'Now click your departure day.':'Click your arrival day, then your departure day.';body+='Dates: \nGuests: '+g.value+'\n\n'}
+        else if(known&&total>0){var fee=num(cfg['cleaning fee']);msg.innerHTML='';msg.appendChild(document.createTextNode(txt+': about '));var bb=document.createElement('b');bb.textContent=money(total+petfee);msg.appendChild(bb);
+          msg.appendChild(document.createTextNode((pet?', including '+money(petfee)+' for your pet,':'')+(fee?' plus '+money(fee)+' cleaning':'')+'. Carol will confirm the final price.'))}
+        else msg.textContent=txt+(pet?', with a pet':'')+'. Carol will confirm the price.';
+        subject='Villa Roccolo: '+nice(ci)+' to '+nice(co);body+='Check-in: '+nice(ci)+'\nCheck-out: '+nice(co)+' ('+nights+' nights)\nGuests: '+g.value+(pet?'\nPet: yes':'')+'\n\n'}
+      else{msg.textContent=ci?'Now click your departure day.':'Click your arrival day, then your departure day.';body+='Dates: \nGuests: '+g.value+(pet?'\nPet: yes':'')+'\n\n'}
       body+='Thank you,\n';
       go.href=base+q;mail.href='mailto:'+EMAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body)}
-    g.addEventListener('change',upd);
+    g.addEventListener('change',upd);document.getElementById('d-pet').addEventListener('change',upd);
     document.getElementById('cal-prev').onclick=function(){off=Math.max(0,off-N);draw()};
     document.getElementById('cal-next').onclick=function(){off=Math.min(16,off+N);draw()};
     addEventListener('resize',function(){var n=matchMedia('(min-width:1000px)').matches?3:2;if(n!==N)draw()});
