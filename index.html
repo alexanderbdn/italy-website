@@ -8,8 +8,8 @@
 <meta property="og:site_name" content="Villa Roccolo">
 <meta property="og:title" content="Villa Roccolo · Lake Maggiore, Italy">
 <meta property="og:description" content="A 1900s family villa above Lake Maggiore, with its pool, lush garden and 180° lake view. Sleeps 10 in 6 bedrooms.">
-<meta property="og:url" content="https://italy-website.vercel.app/">
-<meta property="og:image" content="https://italy-website.vercel.app/img/share.jpg">
+<meta property="og:url" content="https://villaroccolo.net/">
+<meta property="og:image" content="https://villaroccolo.net/img/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The pool at Villa Roccolo with Lake Maggiore and the mountains beyond">
@@ -520,7 +520,7 @@ dialog button{position:fixed;background:none;border:0;color:#fff;font:300 2.2rem
 
   <div class="notes">
     <div><p class="label">Children</p><p>Best for babies not yet crawling, or children of 8 and over who can swim. The terraces and pool make the house unsuitable for toddlers.</p></div>
-    <div><p class="label">Dogs</p><p>One dog is welcome. The garden is fenced, and there is a €30 extra cleaning fee.</p></div>
+    <div><p class="label">Dogs</p><p>One dog is welcome. The garden is fenced, and there is a <span id="pet-fee">€60</span> extra cleaning fee.</p></div>
     <div><p class="label">Registration</p><p>CIN IT103049C2PBONRFHO</p></div>
   </div>
 </div></section>
@@ -623,6 +623,7 @@ dialog button{position:fixed;background:none;border:0;color:#fff;font:300 2.2rem
   function put(id,v){var e=document.getElementById(id);if(e&&v)e.textContent=v}
   var numbers=tab('Numbers').then(function(rows){var m={};rows.slice(1).forEach(function(r){if(r[0])m[r[0].toLowerCase()]=r[1]||''});return m}).catch(function(){return {}});
 
+  numbers.then(function(m){var n=parseFloat(String(m['pet fee']||'').replace(/[^0-9.]/g,''));if(n)put('pet-fee',(m.currency||'€')+n)});
   (function(){var g=document.getElementById('d-g'),go=document.getElementById('d-go'),mail=document.getElementById('d-mail'),msg=document.getElementById('d-msg'),
       base='https://www.airbnb.com/rooms/1551821909593156815',EMAIL='carolmasonandco@gmail.com',
       MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
